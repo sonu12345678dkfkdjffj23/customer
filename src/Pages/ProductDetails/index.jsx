@@ -124,15 +124,6 @@ export const ProductDetails = () => {
               <div className="container pt-10">
                 <div className="flex items-center gap-8 mb-5">
                   <span
-                    className={`link text-[17px] cursor-pointer font-[500] ${activeTab === 0 && "text-primary"
-                      }`}
-                    onClick={() => setActiveTab(0)}
-                  >
-                    Description
-                  </span>
-
-
-                  <span
                     className={`link text-[17px] cursor-pointer font-[500] ${activeTab === 1 && "text-primary"
                       }`}
                     onClick={() => setActiveTab(1)}
@@ -140,12 +131,21 @@ export const ProductDetails = () => {
                   >
                     Reviews ({reviewsCount})
                   </span>
+
+
+                  <span
+                    className={`link text-[17px] cursor-pointer font-[500] ${activeTab === 0 && "text-primary"
+                      }`}
+                    onClick={() => setActiveTab(0)}
+                  >
+                    Description
+                  </span>
                 </div>
 
                 {activeTab === 0 && (
                   <div className="shadow-md w-full py-5 px-8 rounded-md text-[14px]">
                     {
-                      productData?.description
+                      productData?.review
                     }
                   </div>
                 )}
