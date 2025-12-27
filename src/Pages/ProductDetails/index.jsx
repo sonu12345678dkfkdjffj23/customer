@@ -141,22 +141,22 @@ export const ProductDetails = () => {
                     Description
                   </span>
                 </div>
-
-                {activeTab === 0 && (
-                  <div className="shadow-md w-full py-5 px-8 rounded-md text-[14px]">
-                    {
-                      productData?.review
-                    }
-                  </div>
-                )}
-
-
                 {activeTab === 1 && (
                   <div className="shadow-none lg:shadow-md w-full sm:w-[80%] py-0  lg:py-5 px-0 lg:px-8 rounded-md">
                     {
                       productData?.length !== 0 && <Reviews productId={productData?._id} setReviewsCount={setReviewsCount} />
                     }
 
+                  </div>
+                )}
+                
+
+
+                {activeTab === 0 && (
+                  <div className="shadow-md w-full py-5 px-8 rounded-md text-[14px]">
+                    {
+                      productData?.description
+                    }
                   </div>
                 )}
               </div>
