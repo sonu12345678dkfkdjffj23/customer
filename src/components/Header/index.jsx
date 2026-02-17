@@ -22,7 +22,7 @@ import { fetchDataFromApi } from "../../utils/api";
 import { LuMapPin } from "react-icons/lu";
 import { useEffect } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
-
+import "./Navigation/style.css"
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -39,6 +39,8 @@ const Header = () => {
 
   const [isOpenCatPanel, setIsOpenCatPanel] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const context = useContext(MyContext);
 
   const history = useNavigate();
@@ -50,6 +52,24 @@ const Header = () => {
     setAnchorEl(null);
   };
 
+  const handleDownload = () => {
+    setLoading(true);
+
+    // loader dikhane ke liye chhota delay
+    setTimeout(() => {
+      const link = document.createElement("a");
+      link.href = "/6994a2c539ee2939e5317716.apk";
+      link.setAttribute("download", "");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // download start hone ke baad loader band
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }, 300);
+  };
 
   const location = useLocation();
 
@@ -140,20 +160,33 @@ const Header = () => {
                 <img src={localStorage.getItem('logo')} className="max-w-[140px] lg:max-w-[200px]" />
               </Link>
             </div>
-            <a
-              href="/6994a2c539ee2939e5317716.apk"
-              download
+            <button
+              onClick={handleDownload}
+              disabled={loading}
               style={{
                 padding: "8px 20px",
                 background: "#fd7200",
                 color: "#fff",
                 borderRadius: "6px",
-                textDecoration: "none",
-                fontWeight: "bold"
+                border: "none",
+                fontWeight: "bold",
+                cursor: loading ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px"
               }}
             >
-            📲 App
-            </a>
+              {loading ? (
+                <>
+                  <span className="loader" />
+                  Downloading...
+                </>
+              ) : (
+                "📲 App"
+              )}
+            </button>
+
+
 
             <div className={`col2 fixed top-0 left-0 w-full h-full lg:w-[40%] lg:static p-2 lg:p-0 bg-white z-50 ${context?.windowWidth > 992 && '!block'} ${context?.openSearchPanel === true ? 'block' : 'hidden'}`}>
               <Search />
