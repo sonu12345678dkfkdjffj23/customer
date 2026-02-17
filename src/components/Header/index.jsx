@@ -58,7 +58,7 @@ const Header = () => {
     // loader dikhane ke liye chhota delay
     setTimeout(() => {
       const link = document.createElement("a");
-      link.href = "/6994a2c539ee2939e5317716.apk";
+      link.href = "/ams_android_787987_live.apk";
       link.setAttribute("download", "");
       document.body.appendChild(link);
       link.click();
